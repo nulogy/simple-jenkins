@@ -1,0 +1,157 @@
+{
+  "jobs": [
+    {
+      "buildable": true,
+      "builds": [
+        {
+          "number": 12,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/12/"
+        },
+        {
+          "number": 11,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/11/"
+        },
+        {
+          "number": 10,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/10/"
+        },
+        {
+          "number": 9,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/9/"
+        },
+        {
+          "number": 8,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/8/"
+        },
+        {
+          "number": 7,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/7/"
+        },
+        {
+          "number": 6,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/6/"
+        },
+        {
+          "number": 5,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/5/"
+        },
+        {
+          "number": 4,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/4/"
+        },
+        {
+          "number": 3,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/3/"
+        },
+        {
+          "number": 2,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/2/"
+        },
+        {
+          "number": 1,
+          "url": "http://squid.hq.nulogy.com/job/680Nus/1/"
+        }
+      ],
+      "color": "blue",
+      "concurrentBuild": false,
+      "description": "",
+      "displayName": "680Nus",
+      "displayNameOrNull": null,
+      "downstreamProjects": [],
+      "firstBuild": {},
+      "inQueue": false,
+      "lastBuild": {},
+      "lastCompletedBuild": {},
+      "lastFailedBuild": {},
+      "lastStableBuild": {},
+      "lastSuccessfulBuild": {},
+      "lastUnstableBuild": null,
+      "lastUnsuccessfulBuild": {},
+      "name": "680Nus",
+      "nextBuildNumber": 13,
+      "property": [
+        {}
+      ],
+      "queueItem": null,
+      "scm": {},
+      "upstreamProjects": [],
+      "url": "http://squid.hq.nulogy.com/job/680Nus/"
+    }, {
+      "buildable": true,
+      "builds": [
+        {
+          "number": 12,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/12/"
+        },
+        {
+          "number": 11,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/11/"
+        },
+        {
+          "number": 10,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/10/"
+        },
+        {
+          "number": 9,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/9/"
+        },
+        {
+          "number": 8,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/8/"
+        },
+        {
+          "number": 7,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/7/"
+        },
+        {
+          "number": 6,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/6/"
+        },
+        {
+          "number": 5,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/5/"
+        },
+        {
+          "number": 4,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/4/"
+        },
+        {
+          "number": 3,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/3/"
+        },
+        {
+          "number": 2,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/2/"
+        },
+        {
+          "number": 1,
+          "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/1/"
+        }
+      ],
+      "color": "blue",
+      "concurrentBuild": false,
+      "description": "Runs Brakeman static analysis against CPI master branch when changes are detected.",
+      "displayName": "Brakeman (CPI)",
+      "displayNameOrNull": null,
+      "downstreamProjects": [],
+      "firstBuild": {},
+      "inQueue": false,
+      "lastBuild": {},
+      "lastCompletedBuild": {},
+      "lastFailedBuild": {},
+      "lastStableBuild": {},
+      "lastSuccessfulBuild": {},
+      "lastUnstableBuild": null,
+      "lastUnsuccessfulBuild": {},
+      "name": "Brakeman (CPI)",
+      "nextBuildNumber": 13,
+      "property": [
+        {}
+      ],
+      "queueItem": null,
+      "scm": {},
+      "upstreamProjects": [],
+      "url": "http://squid.hq.nulogy.com/job/Brakeman%20(CPI)/"
+    }
+  ]
+}

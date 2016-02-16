@@ -94,3 +94,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+require "webmock/rspec"
+require "simple_jenkins"
