@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'simple_jenkins/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "SimpleJenkins"
+  spec.name          = "simple_jenkins"
   spec.version       = SimpleJenkins::VERSION
   spec.authors       = ["Adam Kerr"]
   spec.email         = ["adamk@nulogy.com"]
