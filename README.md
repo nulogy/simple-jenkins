@@ -1,6 +1,8 @@
 # SimpleJenkins
 
-TODO: Write a gem description
+A super simple API for interacting with jenkins. Currently only does 3 things: fetching jobs, fetching views, building jobs
+
+This gem was extracted from another project, as such it has not had a lot of TLC nor is it likely to in the near future.
 
 ## Installation
 
@@ -20,12 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+adapter = SimpleJenkins::Adapter.new
 
-## Contributing
+jobs = adapter.fetch_jobs
+views = adapter.fetch_views
 
-1. Fork it ( https://github.com/[my-github-username]/simple_jenkins/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+adapter.build_job(jobs.first)
+```
