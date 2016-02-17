@@ -19,6 +19,20 @@ module SimpleJenkins
     values do
       attribute :number, Integer
       attribute :url, String
+      attribute :result, String
+      attribute :building, Boolean
+    end
+
+    def success?
+      result == 'SUCCESS'
+    end
+
+    def failure?
+      result == 'FAILURE'
+    end
+
+    def running?
+      building == true
     end
   end
 
@@ -74,6 +88,14 @@ module SimpleJenkins
       else
         'SUCC'
       end
+    end
+
+    def running?
+      lastBuild.running?
+    end
+
+    def success?
+      lastCompletedBuild.success?
     end
   end
 end

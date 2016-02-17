@@ -6,7 +6,7 @@ describe SimpleJenkins::Adapter do
   let(:jenkins_url) { "test.com" }
   let(:username) { "user" }
   let(:password) { "pass" }
-  let(:adapter) { SimpleJenkins::Adapter.new(username: username, password: password, url: jenkins_url) }
+  let(:adapter) { SimpleJenkins::Adapter.new(jenkins_url, username: username, password: password) }
 
   describe "authentication" do
     it "uses authentication" do
@@ -16,6 +16,13 @@ describe SimpleJenkins::Adapter do
   end
 
   describe "#fetch_jobs" do
+    it "should query the correct url" do
+      stub_request(:get, "http://user:pass@test.com/api/json?tree=jobs%5Bname,url,color,buildable,builds%5Bnumber,url,result,building%5D,concurrentBuild,description,displayName,displayNameOrNull,downstreamProjects,firstBuild%5Bnumber,url,result,building%5D,inQueue,lastDependencies,lastBuild%5Bnumber,url,result,building%5D,lastCompletedBuild%5Bnumber,url,result,building%5D,lastFailedBuild%5Bnumber,url,result,building%5D,lastStableBuild%5Bnumber,url,result,building%5D,lastSuccessfulBuild%5Bnumber,url,result,building%5D,lastUnstableBuild%5Bnumber,url,result,building%5D,lastUnsuccessfulBuild%5Bnumber,url,result,building%5D,nextBuildNumber,property,queueItem,scm,upstreamProjects%5D")
+        .to_return(body: "{}")
+
+      adapter.fetch_jobs
+    end
+
     it "returns a list of jobs" do
       stub_successful_request(load_fixture("jobs_success.json"))
       jobs = adapter.fetch_jobs

@@ -70,12 +70,15 @@ module SimpleJenkins
     end
 
     def extract_attrs(model)
-      model.attribute_set
+      model
+        .attribute_set
         .map { |attr| get_attr_name(attr) }
     end
 
     def get_attr_name(attr)
-      if attr.is_a?(Virtus::Attribute::Collection) && attr.type.member_type != Axiom::Types::Object
+      if attr.primitive.name.include?("SimpleJenkins::")
+        "#{attr.name}[#{extract_attrs(attr.primitive).join(",")}]"
+      elsif attr.is_a?(Virtus::Attribute::Collection) && attr.type.member_type != Axiom::Types::Object
         "#{attr.name}[#{extract_attrs(attr.type.member_type).join(",")}]"
       else
         attr.name
