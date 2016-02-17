@@ -1,7 +1,9 @@
+require "base64"
+
 module SimpleJenkins
   class Adapter
-    def initialize(username:, password:, url:)
-      @auth = "#{username}:#{password}"
+    def initialize(url, username: nil, password: nil)
+      @auth = "#{username}:#{password}" if username && password
       @jenkins_url = url
     end
 
@@ -30,6 +32,7 @@ module SimpleJenkins
       attrs = extract_attrs(Job)
 
       path = "#{@jenkins_url}/api/json?tree=jobs[#{attrs.join(",")}]"
+
       api_response = RestClient.get(path, headers)
 
       JSON
@@ -53,7 +56,7 @@ module SimpleJenkins
         .map { |view_hash| View.new(view_hash) }
 
     rescue RestClient::Exception => e
-      raise ApiException, e.response
+      raise ApiException, e.message
     end
 
     private
