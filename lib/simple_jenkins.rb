@@ -1,5 +1,5 @@
 require "virtus"
-require "restclient"
+require "rest_client"
 
 require "simple_jenkins/version"
 
@@ -9,4 +9,4 @@ end
 require "simple_jenkins/adapter"
 require "simple_jenkins/response"
 require "simple_jenkins/job"
-require "simple_jenkins/job_group"
+require "simple_jenkins/view"
