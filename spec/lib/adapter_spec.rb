@@ -4,8 +4,9 @@ require "uri"
 describe SimpleJenkins::Adapter do
 
   let(:jenkins_url) { "test.com" }
-  let(:auth) { "user:pass" }
-  let(:adapter) { SimpleJenkins::Adapter.new(auth, jenkins_url) }
+  let(:username) { "user" }
+  let(:password) { "pass" }
+  let(:adapter) { SimpleJenkins::Adapter.new(username: username, password: password, url: jenkins_url) }
 
   describe "authentication" do
     it "uses authentication" do
@@ -16,7 +17,7 @@ describe SimpleJenkins::Adapter do
 
   describe "#fetch_jobs" do
     it "returns a list of jobs" do
-      stub_successful_request
+      stub_successful_request(load_fixture("jobs_success.json"))
       jobs = adapter.fetch_jobs
 
       expect(jobs.count).to eq(2)
@@ -24,7 +25,7 @@ describe SimpleJenkins::Adapter do
     end
 
     it "fetches build information" do
-      stub_successful_request
+      stub_successful_request(load_fixture("jobs_success.json"))
       jobs = adapter.fetch_jobs
 
       job = jobs.detect { |job| job.name == "680Nus" }
@@ -36,7 +37,18 @@ describe SimpleJenkins::Adapter do
     end
   end
 
-  describe "#build" do
+  describe "#fetch_views" do
+    it "returns a list of views" do
+      stub_successful_request(load_fixture("views_success.json"))
+      views = adapter.fetch_views
+
+      expect(views.count).to eq(1)
+      expect(views.map(&:name)).to match_array(["Test Servers"])
+      expect(views.flat_map(&:jobs).map(&:name)).to match_array(["Brakeman (CPI)", "680Nus"])
+    end
+  end
+
+  describe "#build_job" do
     let(:job_name) { "Job Name" }
     let(:job) { SimpleJenkins::Job.new(name: job_name) }
 
@@ -76,12 +88,12 @@ describe SimpleJenkins::Adapter do
 
   private
 
-  def load_file_fixture(filename)
+  def load_fixture(filename)
     File.read("spec/fixtures/#{filename}")
   end
 
-  def stub_successful_request
-    stub_request(:get, /test\.com/).to_return(status: 200, body: load_file_fixture("jobs_success.json"))
+  def stub_successful_request(body)
+    stub_request(:get, /test\.com/).to_return(status: 200, body: body)
   end
 
   def stub_jenkins_build(job_name, status, message = nil)

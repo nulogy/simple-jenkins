@@ -1,8 +1,8 @@
 module SimpleJenkins
   class Adapter
-    def initialize(auth, jenkins_url)
-      @auth = auth
-      @jenkins_url = jenkins_url
+    def initialize(username:, password:, url:)
+      @auth = "#{username}:#{password}"
+      @jenkins_url = url
     end
 
     def build_job(job, params = {})
@@ -32,9 +32,25 @@ module SimpleJenkins
       path = "#{@jenkins_url}/api/json?tree=jobs[#{attrs.join(",")}]"
       api_response = RestClient.get(path, headers)
 
-      jobs_hash = JSON.parse(api_response.body).fetch("jobs", {})
+      JSON
+        .parse(api_response.body)
+        .fetch("jobs", {})
+        .map { |job_hash| Job.new(job_hash) }
 
-      return jobs_hash.map { |job_hash| Job.new(job_hash) }
+    rescue RestClient::Exception => e
+      raise ApiException, e.response
+    end
+
+    def fetch_views
+      attrs = extract_attrs(View)
+
+      path = "#{@jenkins_url}/api/json?tree=views[#{attrs.join(",")}]"
+      api_response = RestClient.get(path, headers)
+
+      JSON
+        .parse(api_response.body)
+        .fetch("views", {})
+        .map { |view_hash| View.new(view_hash) }
 
     rescue RestClient::Exception => e
       raise ApiException, e.response
