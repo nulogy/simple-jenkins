@@ -31,8 +31,8 @@ module SimpleJenkins
       result == 'FAILURE'
     end
 
-    def running?
-      building == true
+    def building?
+      building
     end
   end
 
@@ -79,23 +79,20 @@ module SimpleJenkins
       URI::encode(@url)
     end
 
-    def state
-      case color
-      when /disabled/
-        'DISA'
-      when /red/
-        'FAIL'
-      else
-        'SUCC'
-      end
+    def building?
+      lastBuild.building?
     end
 
-    def running?
-      lastBuild.running?
+    def passing?
+      !disabled? && lastCompletedBuild.success?
     end
 
-    def success?
-      lastCompletedBuild.success?
+    def failing?
+      !disabled? && lastCompletedBuild.failure?
+    end
+
+    def disabled?
+      color == 'disabled'
     end
   end
 end

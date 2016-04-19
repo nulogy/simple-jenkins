@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "virtus", "~>1.0"
   spec.add_dependency "rest-client"
+  spec.add_dependency "json"
 end
